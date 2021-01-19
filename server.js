@@ -7,14 +7,14 @@ const app = express();
 const port = 5000;
 const cats = [];
 
-app.use(express.static('public'));
+// app.use(express.static('public'));
 // app.use(loggerMiddleware);
-app.engine('handlebars', handlebars());
-app.set('view engine', 'handlebars');
+app.engine('hbs', handlebars());
+app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => {
-    res.send('Hello world from Express!');
-    res.sendFile(__dirname + '/views/home.html');
+    let name = 'Navcho';
+   res.render('home', {layout: false, name});
 });
 
 app.get('/download', (req, res) => {
