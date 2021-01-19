@@ -1,31 +1,32 @@
 const express = require('express');
-const checkCatIdMiddleware = require('./middlewares/middleware');
-const loggerMiddleware = require ('./middlewares/logger');
+// const checkCatIdMiddleware = require('./middlewares/middleware');
+// const loggerMiddleware = require('./middlewares/logger');
 
 const app = express();
 const port = 5000;
-
 const cats = [];
 
-app.use(loggerMiddleware);
+app.use(express.static('public'));
+// app.use(loggerMiddleware);
 
 app.get('/', (req, res) => {
     res.send('Hello world from Express!');
+    res.sendFile(__dirname + '/views/home.html');
 });
 
 app.get('/download', (req, res) => {
-    res.sendFile(__dirname + '/views/home.html');
+    res.download('./views/home.html');
 });
 
 // app.get('/cats', (req, res) => {
 //     res.redirect('/');
 // });
 
-app.get('/cats/:catId?', checkCatIdMiddleware, (req, res) => {
-    // if (!/\d+/.test(req.params.catId)) {
-    //     res.status(404).send('You need to specify cat ID number');
-    //     return;
-    // }
+app.get('/cats/:catId?', (req, res) => {
+    if (!/\d+/.test(req.params.catId)) {
+        res.status(404).send('You need to specify cat ID number');
+        return;
+    }
     res.send(`You are looking at profile of ${req.params.catId}`);
 });
 
