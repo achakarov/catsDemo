@@ -11,7 +11,10 @@ app.get('/cats', (req, res) => {
 });
 
 app.get('/cats/:catId', (req, res) => {
-    console.log(req.params);
+    if (!/\d+/.test(req.params.catId)) {
+        res.status(404).send('You need to specify cat ID number');
+        return;
+    }
     res.send(`You are looking at profile of ${req.params.catId}`);
 });
 
