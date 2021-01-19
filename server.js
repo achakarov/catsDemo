@@ -8,8 +8,9 @@ app.get('/', (req, res) => {
 
 app.post('/cats', (req, res) => {
     console.log('Create cat');
-    res.status(201);
-    res.send('Cat created!');
+    res
+        .status(201)
+        .send('Cat created!');
 });
 
 // app.put('/cats/:id', (req, res)=>{
@@ -17,7 +18,7 @@ app.post('/cats', (req, res) => {
 // }); 
 
 app.all('/', (req, res) => {
-    console.log('Handle all requests');
+   res.send('Handle all requests');
 });
 
 app.listen(port, () => console.log(`This server is running on port ${port}`));
