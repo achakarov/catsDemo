@@ -6,6 +6,15 @@ app.get('/', (req, res) => {
     res.send('Hello world from Express!');
 });
 
+app.get('/cats', (req, res) => {
+    res.send('Some cats collection');
+});
+
+app.get('/cats/:catId', (req, res) => {
+    console.log(req.params);
+    res.send(`You are looking at profile of ${req.params.catId}`);
+});
+
 app.post('/cats', (req, res) => {
     console.log('Create cat');
     res
