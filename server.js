@@ -1,10 +1,13 @@
 const express = require('express');
 const checkCatIdMiddleware = require('./middlewares/middleware');
+const loggerMiddleware = require ('./middlewares/logger');
 
 const app = express();
 const port = 5000;
 
 const cats = [];
+
+app.use(loggerMiddleware);
 
 app.get('/', (req, res) => {
     res.send('Hello world from Express!');
