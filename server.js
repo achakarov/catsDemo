@@ -1,4 +1,5 @@
 const express = require('express');
+const handlebars = require('express-handlebars');
 // const checkCatIdMiddleware = require('./middlewares/middleware');
 // const loggerMiddleware = require('./middlewares/logger');
 
@@ -8,6 +9,8 @@ const cats = [];
 
 app.use(express.static('public'));
 // app.use(loggerMiddleware);
+app.engine('handlebars', handlebars());
+app.set('view engine', 'handlebars');
 
 app.get('/', (req, res) => {
     res.send('Hello world from Express!');
