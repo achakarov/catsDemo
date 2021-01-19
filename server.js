@@ -1,4 +1,6 @@
 const express = require('express');
+const checkCatIdMiddleware = require('./middlewares/middleware');
+
 const app = express();
 const port = 5000;
 
@@ -9,18 +11,18 @@ app.get('/', (req, res) => {
 });
 
 app.get('/download', (req, res) => {
-    res.sendFile(__dirname + '/views/home.html'); 
+    res.sendFile(__dirname + '/views/home.html');
 });
 
-app.get('/cats', (req, res) => {
-    res.redirect('/');
-});
+// app.get('/cats', (req, res) => {
+//     res.redirect('/');
+// });
 
-app.get('/cats/:catId', (req, res) => {
-    if (!/\d+/.test(req.params.catId)) {
-        res.status(404).send('You need to specify cat ID number');
-        return;
-    }
+app.get('/cats/:catId?', checkCatIdMiddleware, (req, res) => {
+    // if (!/\d+/.test(req.params.catId)) {
+    //     res.status(404).send('You need to specify cat ID number');
+    //     return;
+    // }
     res.send(`You are looking at profile of ${req.params.catId}`);
 });
 
