@@ -17,9 +17,5 @@ app.post('/cats', (req, res) => {
 //     console.log('Update cat');
 // }); 
 
-app.all('/', (req, res) => {
-   res.send('Handle all requests');
-});
-
 app.listen(port, () => console.log(`This server is running on port ${port}`));
 
