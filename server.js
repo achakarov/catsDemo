@@ -13,7 +13,12 @@ app.get('/download', (req, res) => {
 }); 
 
 app.get('/cats', (req, res) => {
-    res.send('Some cats collection');
+    res.json([
+        'Navcho',
+        'Patilan',
+        'Igracha',
+        'Tom'
+    ]);
 });
 
 app.get('/cats/:catId', (req, res) => {
@@ -37,4 +42,3 @@ app.post('/cats', (req, res) => {
 // }); 
 
 app.listen(port, () => console.log(`This server is running on port ${port}`));
-
