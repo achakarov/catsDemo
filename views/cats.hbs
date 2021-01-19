@@ -3,9 +3,12 @@
     <input type="text" id="cat-name" name="cat" />
     <input type="submit" value="create">
 </form>
-
+{{#if cats}}
 <ul>
     {{#each cats}}
     <li>{{this}}</li>
     {{/each}}
 </ul>
+{{else}}
+<p>No cats so far!</p>
+{{/if}}
