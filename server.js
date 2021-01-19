@@ -9,16 +9,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/download', (req, res) => {
-    res.download('./views/home.html');
-}); 
+    res.sendFile(__dirname + '/views/home.html'); 
+});
 
 app.get('/cats', (req, res) => {
-    res.json([
-        'Navcho',
-        'Patilan',
-        'Igracha',
-        'Tom'
-    ]);
+    res.redirect('/');
 });
 
 app.get('/cats/:catId', (req, res) => {
