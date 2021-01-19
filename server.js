@@ -2,9 +2,15 @@ const express = require('express');
 const app = express();
 const port = 5000;
 
+const cats = [];
+
 app.get('/', (req, res) => {
     res.send('Hello world from Express!');
 });
+
+app.get('/download', (req, res) => {
+    res.download('./views/home.html');
+}); 
 
 app.get('/cats', (req, res) => {
     res.send('Some cats collection');
@@ -20,6 +26,7 @@ app.get('/cats/:catId', (req, res) => {
 
 app.post('/cats', (req, res) => {
     console.log('Create cat');
+
     res
         .status(201)
         .send('Cat created!');
