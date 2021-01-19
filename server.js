@@ -6,5 +6,19 @@ app.get('/', (req, res) => {
     res.send('Hello world from Express!');
 });
 
-app.listen(port, () => console.log(`This server is running on port ${port}`)); 
+app.post('/cats', (req, res) => {
+    console.log('Create cat');
+    res.status(201);
+    res.send('Cat created!');
+});
+
+// app.put('/cats/:id', (req, res)=>{
+//     console.log('Update cat');
+// }); 
+
+app.all('/', (req, res) => {
+    console.log('Handle all requests');
+});
+
+app.listen(port, () => console.log(`This server is running on port ${port}`));
 
